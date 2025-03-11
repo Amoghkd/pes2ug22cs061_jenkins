@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -5,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'gpoiu++ -o PES2UG22CS061 main.cpp'
+                    sh 'g++ main.cpp -o main_exec'
                 }
             }
         }
@@ -13,21 +14,21 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './PES2UG22CS061'
+                    sh './main_exec'
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deployment stage (Placeholder)"
+                echo 'Deploying application...'
             }
         }
     }
 
     post {
         failure {
-            echo "Pipeline failed"
+            echo 'Pipeline failed'
         }
     }
 }
